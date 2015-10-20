@@ -1,5 +1,6 @@
 package baac.nuntawit.pornpimon.baacrestaurant;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -19,12 +20,24 @@ public class MainActivity extends AppCompatActivity {
         createAndConnected(); //พิมพ์มี ()เป็น Method กด Alt+Enter ให้ระบบสร้าง Method ให้อัตโนมัติ
 
     //TesterAdd
-        testerAdd();
+    //  testerAdd();
+
+     //Delete All SQLite
+        DeleteAllSQLite();
+
 
 
 
 
     } //Main Method
+
+    private void DeleteAllSQLite() {
+
+        SQLiteDatabase objSqlDatabase = openOrCreateDatabase("BAAC.db",MODE_PRIVATE,null); //MODE_PRIVATE ลบข้อมูลในตารางแต่ยังคงตารางไว้
+        objSqlDatabase.delete("userTABLE", null, null);
+        objSqlDatabase.delete("foodTABLE", null, null);
+
+    }
 
     private void testerAdd() {
         objUserTABLE.addNewUser("testUser", "testPassword", "ทดสอบชื่อภาษาไทย");
